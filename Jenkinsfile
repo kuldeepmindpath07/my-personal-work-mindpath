@@ -1,3 +1,4 @@
+@Library('share') _
 pipeline {
     agent any
 
@@ -9,7 +10,9 @@ pipeline {
         }
         stage('clone'){
             steps{
-                git url: "https://github.com/knaopel/docker-frontend-backend-db.git", branch: "master"
+                script{
+		    tryClone("https://github.com/kuldeepmindpath07/jenkins-demo.git","kuldeep")
+		}
                 echo "clonning successfull"
             }
         }
