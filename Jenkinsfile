@@ -18,8 +18,7 @@ pipeline {
         }
 	stage ('push to dockerhub'){
 	    steps{
-	    	sh "docker login  -u kuldeep433 -p Lala@2003ji";
-		sh "docker image tag docker-frontend-backend-db-mango_1:latest"
+	    	sh "docker login  -u kuldeep433 -p Lala@2003ji"
 		sh "docker kuldeep433/push docker-frontend-backend-db_api_1"
 		sh "docker kuldeep433/push docker-frontend-backend-dp_web_1"
 		sh "docker kuldeep433/push docker-frontend-backend-db-mango_1"
