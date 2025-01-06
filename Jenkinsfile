@@ -19,7 +19,7 @@ pipeline {
         stage('build and run'){
             steps{
 		echo "done done done"
-		sh "docker stop db_cont"
+		sh "docker stop db_cont && docker rm db_cont"
                 sh "docker-compose up -d --remove-orphans"
             }
         }
