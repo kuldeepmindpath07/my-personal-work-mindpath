@@ -22,6 +22,7 @@ pipeline {
 		echo "done done done"  
 		sh "docker stop nginx_cont && docker rm nginx_cont"
                 sh "docker-compose up -d --remove-orphans"
+		sh "docker images"
             }
         }
 	stage ('push to dockerhub'){
