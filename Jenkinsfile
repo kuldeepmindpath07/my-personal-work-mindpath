@@ -20,6 +20,7 @@ pipeline {
             steps{
 		echo "done done done"
 		sh "docker stop db_cont && docker rm db_cont"
+		sh "docker stop django_app && docker rm django_app"    
                 sh "docker-compose up -d --remove-orphans"
             }
         }
