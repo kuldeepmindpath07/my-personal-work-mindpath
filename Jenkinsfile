@@ -18,7 +18,8 @@ pipeline {
         }
         stage('build and run'){
             steps{
-		sh "docker stop a96b5bf7ca7d2fdab36e6d6b980c82eb4803b9c891218e8002c948dd21f60dde"
+		echo "done done done"
+		sh "docker stop db_cont"
                 sh "docker-compose up -d --remove-orphans"
             }
         }
