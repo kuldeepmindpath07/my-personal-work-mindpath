@@ -19,6 +19,7 @@ pipeline {
         stage('build and run'){
             steps{
 		echo "done done done"  
+		sh "docker stop django_cont"
                 sh "docker-compose up -d --remove-orphans"
             }
         }
