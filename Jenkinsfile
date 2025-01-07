@@ -21,7 +21,7 @@ pipeline {
                     steps {
                         echo 'Building frontend...'
                         dir('frontend') { // Navigate to the frontend directory
-                            sh 'docker build -t my-frontend:latest -f Dockerfile .'
+                            sh 'docker build -t three-tier_web:latest -f Dockerfile .'
                         }
                     }
                 }
@@ -29,7 +29,7 @@ pipeline {
                     steps {
                         echo 'Building backend...'
                         dir('backend') { // Navigate to the backend directory
-                            sh 'docker build -t my-backend:latest -f Dockerfile .'
+                            sh 'docker build -t three-tier_api:latest -f Dockerfile .'
                         }
                     }
                 }
@@ -41,13 +41,20 @@ pipeline {
                 sh 'docker-compose down && docker-compose up -d'
             }
         }
-        stage('pushing'){
-            steps{
-                 sh "docker login -u kuldeep433 -p Lala@2003ji"
-		         sh "docker image tag three-tier_web:latest kuldeep433/three-tier_web"
-		         sh "docker image tag three-tier_api:latest kuldeep433/three-tier_api"    
-		         sh "docker push kuldeep433/three-tier_web"
-                 	 sh "docker push kuldeep433/three-tier_api"
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    // Log in to Docker Hub
+                    sh "docker login -u kuldeep433 -p Lala@2003ji"
+
+                    // Tag and push the frontend image
+                    sh "docker tag three-tier_web:latest kuldeep433/three-tier_web"
+                    sh "docker push kuldeep433/three-tier_web"
+
+                    // Tag and push the backend image
+                    sh "docker tag three-tier_api:latest kuldeep433/three-tier_api"
+                    sh "docker push kuldeep433/three-tier_api"
+                }
             }
         }
     }
