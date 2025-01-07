@@ -1,4 +1,4 @@
-@Library('share') _
+
 pipeline {
     agent any
 
@@ -11,7 +11,7 @@ pipeline {
         stage('clone'){
             steps{
                 script{
-		    tryClone("https://github.com/kuldeepmindpath07/jenkins-demo.git","kuldeep")
+		    git url: "https://github.com/kuldeepmindpath07/my-personal-work-mindpath.git", branch: "my-files"
 		}
                 echo "clonning successfull"
             }
@@ -30,13 +30,6 @@ pipeline {
                         sh 'docker build -t my-backend:latest -f backend/Dockerfile .'
                     }
                 }
-            }
-        }
-        stage('build and run'){
-            steps{
-		echo "done done done"  
-		sh "docker stop nginx_cont && docker rm nginx_cont"
-                sh "docker-compose up -d --remove-orphans"
             }
         }
 	stage ('push to dockerhub'){
