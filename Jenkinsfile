@@ -1,41 +1,45 @@
-
 pipeline {
     agent any
 
     stages {
         stage('Hello') {
             steps {
-                echo 'i am clonning the three tier application'
+                echo 'I am cloning the three-tier application'
             }
         }
-        stage('clone'){
-            steps{
-                script{
-		    git url: "https://github.com/kuldeepmindpath07/my-personal-work-mindpath.git", branch: "my-files"
-		}
-                echo "clonning successfull"
+        stage('Clone') {
+            steps {
+                script {
+                    git url: "https://github.com/kuldeepmindpath07/my-personal-work-mindpath.git", branch: "my-files"
+                }
+                echo "Cloning successful"
             }
         }
-	stage('Build Frontend and Backend in Parallel') {
+        stage('Build Frontend and Backend in Parallel') {
             parallel {
                 stage('Build Frontend') {
                     steps {
                         echo 'Building frontend...'
-                        sh 'docker build -t my-frontend:latest -f frontend/Dockerfile .'
+                        dir('frontend') { // Navigate to the frontend directory
+                            sh 'docker build -t my-frontend:latest -f Dockerfile .'
+                        }
                     }
                 }
                 stage('Build Backend') {
                     steps {
                         echo 'Building backend...'
-                        sh 'docker build -t my-backend:latest -f backend/Dockerfile .'
+                        dir('backend') { // Navigate to the backend directory
+                            sh 'docker build -t my-backend:latest -f Dockerfile .'
+                        }
                     }
                 }
             }
         }
-	stage('deploy'){
-		steps{
-			sh 'docker-compose down && docker-compose up -d '
-		}
-	}
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
+                sh 'docker-compose down && docker-compose up -d'
+            }
+        }
     }
 }
