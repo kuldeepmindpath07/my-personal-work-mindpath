@@ -32,17 +32,6 @@ pipeline {
                 }
             }
         }
-	stage ('push to dockerhub'){
-	    steps{
-	    	
-		withCredentials ([usernamePassword('credentialsId':"dockerHubCred", passwordVariable: "dockerHubPass", usernameVariable: "dockerHubUser")]){
-		     sh "docker login -u kuldeep433 -p Lala@2003ji"
-		     sh "docker image tag three-tier_web:latest kuldeep433/three-tier_web"
-		     sh "docker image tag three-tier_api:latest kuldeep433/three-tier_api"    
-		     sh "docker push kuldeep433/three-tier_web"
-		     sh "docker push kuldeep433/three-tier_api"
-	        }
-	    }
-	}
+	
     }
 }
