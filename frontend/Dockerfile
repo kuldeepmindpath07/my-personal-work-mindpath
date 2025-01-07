@@ -1,15 +1,16 @@
-FROM node:16 as build
-#using node 16 version base image
+FROM node:14-alpine
+
 WORKDIR /app
-#working directory changed as app
-COPY . /app
-#now install all the dependecies 
+
+# add '/app/node_modules/.bin' to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+# install application dependencies
+COPY package*.json ./
 RUN npm install
-#pulling node image 
-FROM node:16
-#creating and changing work directory to src
-WORKDIR /src
-#copying all the files that are present in app folder of build image
-COPY --from=build /app /src
-#npm start command to run the backend server
-CMD ["npm","start"]
+# RUN npm install react-scripts -g
+
+# copy app files
+COPY . .
+
+EXPOSE 3000
+CMD ["npm", "start"]
