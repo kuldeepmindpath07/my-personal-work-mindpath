@@ -16,12 +16,6 @@ pipeline {
                 echo "clonning successfull"
             }
         }
-	stage('Initialize'){
-        	steps{
-			def dockerHome = tool 'myDocker'
-        		env.PATH = "${dockerHome}/bin:${env.PATH}"
-		}
-    	}
 	stage('Build Frontend and Backend in Parallel') {
             parallel {
                 stage('Build Frontend') {
