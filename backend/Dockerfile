@@ -1,16 +1,13 @@
-FROM node:16 as build
-# creating and changing work directory as services
-WORKDIR /services
-#copy all the file present in present working directory
+FROM node:10-alpine
+
+WORKDIR /usr/src/app
+
 COPY package*.json ./
-#install all the dependencies required for project to run
+
 RUN npm install
-#use node 16 prebuilt image
-FROM build
-#change and create workdir as data
-WORKDIR /data
-#now copy the files present in services folder of build image
-COPY --from=build /services /data
-COPY . /data
-# run the project using npm start command
-CMD ["npm","start"]
+
+COPY . .
+
+EXPOSE 3001
+
+CMD ["node", "server.js"]
