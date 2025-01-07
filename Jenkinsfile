@@ -16,7 +16,22 @@ pipeline {
                 echo "clonning successfull"
             }
         }
-	
+	stage('Build Frontend and Backend in Parallel') {
+            parallel {
+                stage('Build Frontend') {
+                    steps {
+                        echo 'Building frontend...'
+                        sh 'docker build -t my-frontend:latest -f frontend/Dockerfile .'
+                    }
+                }
+                stage('Build Backend') {
+                    steps {
+                        echo 'Building backend...'
+                        sh 'docker build -t my-backend:latest -f backend/Dockerfile .'
+                    }
+                }
+            }
+        }
         stage('build and run'){
             steps{
 		echo "done done done"  
