@@ -43,9 +43,11 @@ pipeline {
         }
         stage('Push to Docker Hub') {
             steps {
-                script {
-                    // Log in to Docker Hub
-                    sh "docker login -u kuldeep433 -p Lala@2003ji"
+               withCredentials([usernamePassword(
+                    credentialsId:"demo",
+                    usernameVariable:"dockerHubUser", 
+                    passwordVariable:"dockerHubPass")]){
+                    sh "docker login -u kuldeep433 -p ${env.dockerHubPass}"
 
                     // Tag and push the frontend image
                     sh "docker tag three-tier_web:latest kuldeep433/three-tier_web"
