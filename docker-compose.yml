@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   web:
-    build: my-frontend
+    image: my-frontend
     depends_on:
       - api
     ports:
