@@ -1,46 +1,22 @@
 trigger:
-- main  # Adjust to the branch or files you want to monitor
+- main  # Adjust to your branch
 
 pool:
   vmImage: ubuntu-latest
 
-variables:
-  frontend_dir: 'frontend'
-  backend_dir: 'backend'
-
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
+# Step 1: Install Docker and Docker Compose (if needed)
+- task: DockerInstaller@0
+  displayName: 'Install Docker'
 
-# Frontend build steps
 - script: |
-    export NODE_OPTIONS=--openssl-legacy-provider
-    cd $(frontend_dir)
-    npm install
-    npm build
-    npm start
-  displayName: 'Install dependencies and build frontend'
+    sudo curl -L "https://github.com/docker/compose/releases/download/2.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    docker-compose --version
+  displayName: 'Install Docker Compose'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(frontend_dir)/build'
-    ArtifactName: 'frontend'
-  displayName: 'Publish frontend build artifacts'
-
-# Backend build steps
+# Step 2: Build and run containers using docker-compose
 - script: |
-    export NODE_OPTIONS=--openssl-legacy-provider
-    cd $(backend_dir)
-    npm install
-    npm test
-    npm build
-    npm start
-  displayName: 'Install dependencies, test, and build backend'
+    docker-compose up -d # Start services in detached mode
+  displayName: 'Run docker-compose'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(backend_dir)'
-    ArtifactName: 'backend'
-  displayName: 'Publish backend build artifacts'
