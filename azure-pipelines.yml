@@ -8,8 +8,7 @@ stages:
       - job: 'myJob'
         steps:
           - task: Docker@1
-          - script: cd frontend
-          - script: docker build -t my-frontend .
+          - script: cd frontend && docker build -t my-frontend .
       - job: 'mineJob'
         steps: 
           - task: Docker@1
