@@ -9,6 +9,16 @@ steps:
 - task: DockerInstaller@0
   displayName: 'Install Docker'
 
+- script:
+   cd backend
+   sudo docker build -t my-backend .
+  displayName: 'build backend image'
+
+- script: 
+   cd frontend
+   sudo docker built -t my-frontend .
+  displayName: 'build frontend image'
+
 - script: |
    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
    sudo chmod +x /usr/local/bin/docker-compose
