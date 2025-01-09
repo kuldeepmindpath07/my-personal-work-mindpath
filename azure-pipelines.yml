@@ -1,17 +1,15 @@
 trigger:
   - master
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'macOS-latest'
 stages:
-  - stage: 'buildstage'
+  - stage: 'mystage'
     jobs:
-      - job: 'myjob'
-        steps:
-           - script: echo "ubuntu machine is running here"
-  - stage: 'deploystage'
-    pool:
-      vmImage: 'windows-latest'
-    jobs:
-      - job: 'myjob'
-        steps:
-          - script: echo "windows machine is running here"
+       - job: 'myjob1'
+         steps:
+           - script: echo "macOS is working "
+       - job: 'myjob2'
+         pool:
+           vmImage: 'windows-latest'
+         steps:
+           - script: echo "windows is working"
