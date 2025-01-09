@@ -17,5 +17,8 @@ stages:
       - job: 'hisJob'
         steps:
           - task: DockerCompose@1
+            inputs:
+              projectName: 'kuldeepmindpath07-my-personal-work-mindpath'
+              dockerComposeFile: 'docker-compose.yml'
           - script: docker-compose up -d
         dependsOn: mineJob
