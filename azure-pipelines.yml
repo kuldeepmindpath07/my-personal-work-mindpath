@@ -15,6 +15,7 @@ stages:
   - stage: 'stageThree'
     jobs:
        - job: 'myjob'
+    dependsOn: stageTwo
     condition: succeeded()
   - stage: 'stageFour'
     jobs: 
