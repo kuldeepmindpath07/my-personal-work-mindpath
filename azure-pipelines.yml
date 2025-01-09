@@ -19,7 +19,8 @@ steps:
     export NODE_OPTIONS=--openssl-legacy-provider
     cd $(frontend_dir)
     npm install
-    npm run build
+    npm build
+    npm start
   displayName: 'Install dependencies and build frontend'
 
 - task: PublishBuildArtifacts@1
@@ -34,7 +35,8 @@ steps:
     cd $(backend_dir)
     npm install
     npm test
-    npm run build
+    npm build
+    npm start
   displayName: 'Install dependencies, test, and build backend'
 
 - task: PublishBuildArtifacts@1
