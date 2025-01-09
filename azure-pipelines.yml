@@ -10,12 +10,12 @@ steps:
   displayName: 'Install Docker'
 
 - script:
-   cd backend
+   dir backend
    sudo docker build -t my-backend .
   displayName: 'build backend image'
 
 - script: 
-   cd frontend
+   dir frontend
    sudo docker built -t my-frontend .
   displayName: 'build frontend image'
 
