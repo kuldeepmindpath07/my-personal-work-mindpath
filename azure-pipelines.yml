@@ -15,7 +15,9 @@ stages:
           - task: Docker@1
           - script: cd frontend
           - script: docker build -t my-frontend .
+        dependsOn: myJob
       - job: 'hisJob'
         steps:
           - task: DockerCompose@1
           - script: docker-compose up -d
+        dependsOn: mineJob
