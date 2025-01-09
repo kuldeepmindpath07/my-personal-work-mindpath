@@ -20,5 +20,5 @@ stages:
             inputs:
               projectName: 'kuldeepmindpath07-my-personal-work-mindpath'
               dockerComposeFile: 'docker-compose.yml'
-          - script: docker-compose up -d
+              dockerComposeCommand: 'up'
         dependsOn: mineJob
