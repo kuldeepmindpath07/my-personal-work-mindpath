@@ -2,11 +2,11 @@ trigger:
 - master
 
 pool:
-- vmImage: 'Ubuntu-latest'
+ vmImage: ubuntu-latest
 
 stages:
-  - stage: dada
+  - stage: build
     jobs:
-      - job: Ajob
+      - job:
         steps:
-        -  script: echo "hiii bro"
+        - script: echo "how are you "
