@@ -9,7 +9,7 @@ stages:
         steps:
           - task: Docker@1
           - script: cd backend
-                    docker build -t my-backend .
+          - script: docker build -t my-backend .
           - task: Docker@1
           - script: cd frontend
                     docker build -t my-frontend .
