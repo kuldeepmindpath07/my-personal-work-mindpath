@@ -15,11 +15,8 @@ stages:
   - stage: 'stageThree'
     jobs:
        - job: 'myjob'
+         cancelTimeoutInMinutes: 2
+         timeoutInMinutes: 3
+         continueOnError: true
     dependsOn: stageTwo
     condition: succeeded()
-  - stage: 'stageFour'
-    jobs: 
-      - job: 'myjob'
-    dependsOn: 
-    - stageOne
-    - stageTwo
