@@ -12,11 +12,11 @@ steps:
 - script: |
     cd frontend
     docker build -t my-frontend .
-  displayName: 'Build Docker Image for Frontend in Backend Directory'
+  displayName: 'Build Docker Image for Frontend '
 
 - script: 
    cd backend
-   sudo docker built -t my-backend .
+   docker build -t my-backend .
   displayName: 'build backend image'
 
 - script: |
