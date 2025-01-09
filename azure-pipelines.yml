@@ -12,6 +12,6 @@ stages:
           - script: docker build -t my-backend .
           - task: Docker@1
           - script: cd frontend
-                    docker build -t my-frontend .
+          - script: docker build -t my-frontend .
           - task: DockerCompose@1
           - script: docker-compose up -d
