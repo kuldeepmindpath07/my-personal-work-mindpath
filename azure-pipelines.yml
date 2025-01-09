@@ -5,18 +5,13 @@ pool:
 stages:
   - stage: 'stageOne'
     jobs:
-       - job: "myjob"
-         steps:
-           - script: npm install
-  - stage: 'stageTwo'
-    jobs:
-       - job: 'myJob'
-    condition: failed()
-  - stage: 'stageThree'
-    jobs:
-       - job: 'myjob'
-         cancelTimeoutInMinutes: 2
-         timeoutInMinutes: 3
-         continueOnError: true
-    dependsOn: stageTwo
-    condition: succeeded()
+      - job: 'myJob'
+        steps:
+          - task: Docker@1
+          - script: cd backend
+                    docker build -t my-backend .
+          - task: Docker@1
+          - script: cd frontend
+                    docker build -t my-frontend .
+          - task: DockerCompose@1
+          - script: docker-compose up -d
