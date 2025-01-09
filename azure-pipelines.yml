@@ -24,6 +24,7 @@ steps:
   displayName: 'npm install and run for frontend'
   
 - script: |
+    export NODE_OPTIONS=--openssl-legacy-provider
     cd backend
     npm install
     nodejs index.js
