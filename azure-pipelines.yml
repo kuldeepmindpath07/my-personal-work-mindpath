@@ -16,6 +16,7 @@ steps:
 
 # Frontend build steps
 - script: |
+    export NODE_OPTIONS=--openssl-legacy-provider
     cd $(frontend_dir)
     npm install
     npm run build
@@ -29,6 +30,7 @@ steps:
 
 # Backend build steps
 - script: |
+    export NODE_OPTIONS=--openssl-legacy-provider
     cd $(backend_dir)
     npm install
     npm test
