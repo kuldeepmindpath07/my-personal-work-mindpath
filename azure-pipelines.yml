@@ -20,10 +20,12 @@ steps:
     cd frontend
     npm install
     npm start
+    npm build
   displayName: 'npm install and run for frontend'
   
 - script: |
     cd backend
     npm install
     nodejs index.js
+    npm build
   displayName: 'npm install and run for backend'
