@@ -18,6 +18,6 @@ steps:
 
 # Step 2: Build and run containers using docker-compose
 - script: |
-    docker-compose up -d # Start services in detached mode
+    docker compose up -d # Start services in detached mode
   displayName: 'Run docker-compose'
 
