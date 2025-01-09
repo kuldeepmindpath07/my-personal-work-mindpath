@@ -1,25 +1,12 @@
 trigger:
-- my-files
+- master
 
-resources:
-- repo: self
-  type: git
-  ref: my-files
+pool:
+- vmImage: 'Ubuntu-latest'
 
 stages:
-  - stage: build
+  - stage: dada
     jobs:
-    - job: Build
-      displayName: Build image
-      pool:
-        vmImage: Ubuntu-latest
-      steps: 
-      - task: Docker@2
-        inputs: 
-         containerRegistry: 'docker-hub-registry'
-         repository: 'azure-pipeline'
-         Dockerfile: '/frontend/Dockerfile'
-
-         
-          
-        
+      - job: Ajob
+        steps:
+        -  script: echo "hiii bro"
