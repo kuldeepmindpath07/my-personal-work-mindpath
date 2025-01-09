@@ -1,13 +1,17 @@
 trigger:
   - master
-
+pool:
+  vmImage: 'ubuntu-latest'
 stages:
-  - stage: A 
+  - stage: 'buildstage'
     jobs:
-    - job: 'one'
-      steps:
-        - script: echo "hii this is first job"
-    - job: 'second'
-      steps:
-        - script: echo "hi this is second job"
-           
+      - job: 'myjob'
+        steps:
+           - script: echo "ubuntu machine is running here"
+  - stage: 'deploystage'
+    pool:
+      vmImage: 'windows-latest'
+    jobs:
+      - job: 'myjob'
+        steps:
+          - script: echo "windows machine is running here"
