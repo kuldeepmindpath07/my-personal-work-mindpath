@@ -1,0 +1,25 @@
+trigger:
+- my-files
+
+resources:
+- repo: self
+  type: git
+  ref: my-files
+
+stages:
+  - stage: build
+    jobs:
+    - job: Build
+      displayName: Build image
+      pool:
+        vmImage: Ubuntu-latest
+      steps: 
+      - task: Docker@2
+        inputs: 
+         containerRegistry: 'docker-hub-registry'
+         repository: 'azure-pipeline'
+         Dockerfile: '/frontend/Dockerfile'
+
+         
+          
+        
