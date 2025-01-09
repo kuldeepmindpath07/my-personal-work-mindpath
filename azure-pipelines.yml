@@ -14,9 +14,9 @@ steps:
     docker build -t my-frontend .
   displayName: 'Build Docker Image for Frontend '
 
-- script: 
-   cd backend
-   docker build -t my-backend .
+- script: |
+    cd backend
+    docker build -t my-backend .
   displayName: 'build backend image'
 
 - script: |
