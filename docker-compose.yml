@@ -20,8 +20,6 @@ services:
   mongo:
     image: mongo
     restart: always
-    volumes: 
-      - mongodb_data:/data/db
     env_file:
       - .env
     # uncomment following lines to access db locally
