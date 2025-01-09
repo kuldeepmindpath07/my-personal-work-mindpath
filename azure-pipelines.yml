@@ -10,9 +10,12 @@ stages:
           - task: Docker@1
           - script: cd backend
           - script: docker build -t my-backend .
+      - job: 'mineJob'
+        steps: 
           - task: Docker@1
-          - script: cd ./../frontend
+          - script: cd frontend
           - script: docker build -t my-frontend .
+      - job: 'hisJob'
+        steps:
           - task: DockerCompose@1
-          - script: cd ..
           - script: docker-compose up -d
