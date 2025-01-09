@@ -9,7 +9,6 @@ stages:
   - stage: 'stageTwo'
     jobs:
        - job: 'myJob'
-    dependsOn: []
   - stage: 'stageThree'
     jobs:
        - job: 'myjob'
@@ -17,4 +16,6 @@ stages:
   - stage: 'stageFour'
     jobs: 
       - job: 'myjob'
-    dependsOn: []
+    dependsOn: 
+    - stageOne
+    - stageTwo
