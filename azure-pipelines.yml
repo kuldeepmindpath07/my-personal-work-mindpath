@@ -9,11 +9,11 @@ stages:
   - stage: 'stageTwo'
     jobs:
        - job: 'myJob'
-    dependsOn: stageOne
+    dependsOn: []
   - stage: 'stageThree'
     jobs:
        - job: 'myjob'
-    dependsOn: stageOne
+    dependsOn: []
   - stage: 'stageFour'
     jobs: 
       - job: 'myjob'
