@@ -6,6 +6,8 @@ stages:
   - stage: 'stageOne'
     jobs:
        - job: "myjob"
+         steps:
+           - script: npm install
   - stage: 'stageTwo'
     jobs:
        - job: 'myJob'
