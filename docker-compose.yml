@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   web:
-    image: my-frontend
+    build: ./frontend
     depends_on:
       - api
     ports:
@@ -9,7 +9,7 @@ services:
     networks:
       - network-backend
   api:
-    image: my-backend
+    build: ./backend
     depends_on:
       - mongo
     ports:
