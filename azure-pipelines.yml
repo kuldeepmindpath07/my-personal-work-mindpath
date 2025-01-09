@@ -9,10 +9,11 @@ stages:
   - stage: 'stageTwo'
     jobs:
        - job: 'myJob'
+    condition: failed()
   - stage: 'stageThree'
     jobs:
        - job: 'myjob'
-    dependsOn: []
+    condition: succeeded()
   - stage: 'stageFour'
     jobs: 
       - job: 'myjob'
