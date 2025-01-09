@@ -12,8 +12,7 @@ stages:
       - job: 'mineJob'
         steps: 
           - task: Docker@1
-          - script: cd backend
-          - script: docker build -t my-backend .
+          - script: cd backend && docker build -t my-backend .
         dependsOn: myJob
       - job: 'hisJob'
         steps:
