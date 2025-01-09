@@ -12,4 +12,4 @@ stages:
   - stage: 'stageThree'
     jobs:
        - job: 'myjob'
-    dependsOn: 'stageOne'
+    dependsOn: stageOne
