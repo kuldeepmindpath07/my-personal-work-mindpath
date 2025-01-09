@@ -10,13 +10,9 @@ steps:
   displayName: 'Install Docker'
 
 - script: |
-    sudo curl -L "https://github.com/docker/compose/releases/download/2.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    if [ $? -ne 0 ]; then
-        echo "Failed to download docker-compose"
-        exit 1
-    fi
-    sudo chmod +x /usr/local/bin/docker-compose
-    docker-compose --version
+    mkdir -p ~/.docker/cli-plugins/
+    curl -SL https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
+    chmod +x ~/.docker/cli-plugins/docker-compose
   displayName: 'Install Docker Compose'
 
 
