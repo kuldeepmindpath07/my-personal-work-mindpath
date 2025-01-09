@@ -1,12 +1,13 @@
 trigger:
-- master
-
-pool:
- vmImage: ubuntu-latest
+  - master
 
 stages:
-  - stage: build
+  - stage: A 
     jobs:
-      - job:
-        steps:
-        - script: echo "how are you "
+    - job: 'one'
+      steps:
+        - script: echo "hii this is first job"
+    - job: 'second'
+      steps:
+        - script: echo "hi this is second job"
+           
