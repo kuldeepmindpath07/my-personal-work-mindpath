@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   web:
-    image: my-frontend
+    build: .
     depends_on:
       - api
     ports:
@@ -9,7 +9,7 @@ services:
     networks:
       - network-backend
   api:
-    image: my-backend
+    build: .
     depends_on:
       - mongo
     ports:
@@ -22,9 +22,6 @@ services:
     restart: always
     env_file:
       - .env
-    # uncomment following lines to access db locally
-    # ports:
-    #   - 27017:27017
     networks: 
      - network-backend
 
